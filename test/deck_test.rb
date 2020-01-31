@@ -25,8 +25,6 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     assert_equal 3, deck.count
-
-    require "Pry"; binding.pry
   end
 
   def test_cards_in_categories
