@@ -75,9 +75,11 @@ class Round
   end
 
   def finish
+    system "clear"
     puts "****** Game over! ******"
-    puts "You had #{number_correct} out of #{deck.count} for a total score of #{percent_correct}%"
-    # puts ""
+    puts "You had #{number_correct} out of #{deck.count} for a total score of #{percent_correct.round(0)}%"
+    puts "#{percent_correct_by_category(:Animals)}% correct "
+
   end
 
 end
