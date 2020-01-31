@@ -4,6 +4,10 @@ class Deck
     @cards = cards
   end
 
+  def count
+    @cards.length
+  end
+
   def add_card(card)
     @cards << card
   end
