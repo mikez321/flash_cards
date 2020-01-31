@@ -7,6 +7,17 @@ class Round
     @number_correct = 0
   end
 
+  def start
+    system "clear"
+    puts "Welcome! You're playing with #{deck.count} cards."
+    puts "-------------------------------------------------------------------"
+    puts "This is card number #{card_number + 1} of #{deck.count} cards."
+    puts "Question: #{current_card.question}"
+    print " Answer: "
+    guess = gets.chomp
+    take_turn(guess)
+  end
+
   def current_card
     deck.cards[card_number]
   end
@@ -18,7 +29,16 @@ class Round
     if new_turn.correct?
       @number_correct += 1
     end
-    new_turn
+    system "clear"
+    puts "This is card number #{card_number + 1} of #{deck.count} cards."
+    puts "Question: #{current_card.question}"
+    print " Answer: "
+    guess = gets.chomp
+    if (card_number + 1) == deck.count
+      finish
+    else
+      take_turn(guess)
+    end
   end
 
   def number_correct_by_category(category)
@@ -54,5 +74,10 @@ class Round
      percent_correct
   end
 
+  def finish
+    puts "****** Game over! ******"
+    puts "You had #{number_correct} out of #{deck.count} for a total score of #{percent_correct}%"
+    # puts ""
+  end
 
 end
