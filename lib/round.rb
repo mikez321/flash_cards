@@ -5,7 +5,6 @@ class Round
     @turns = []
     @card_number = 0
     @number_correct = 0
-    @categories = []
   end
 
   def start
