@@ -72,7 +72,7 @@ class Round
   def finish
     puts "****** Game over! ******"
     puts "You had #{number_correct} out of #{deck.cards.length} for a total score of #{percent_correct}%"
-    deck.categories.each do |category|
+    deck.categories_in_deck.each do |category|
       puts "#{category.to_s} - #{percent_correct_by_category(category)}% correct"
     end
   end
