@@ -9,7 +9,6 @@ class Round
   end
 
   def start
-
     system "clear"
     puts "Welcome! You're playing with #{deck.cards.length} cards."
     puts "-------------------------------------------------------------------"
@@ -29,34 +28,32 @@ class Round
     @turns << new_turn
     @card_number += 1
     puts new_turn.feedback
-      if new_turn.correct?
-        @number_correct += 1
-      end
-      if (turns.length) == deck.cards.length
-        finish
-      else
-      puts "This is card number #{card_number + 1} of #{deck.cards.length}."
-      puts "Question: #{current_card.question}"
-      print " Answer: "
-      guess = gets.chomp
-      take_turn(guess)
-    end
+    @number_correct += 1 if new_turn.correct?
+
+    return finish if (turns.length) == deck.cards.length
+    round
+  end
+
+  def round
+    puts "This is card number #{card_number + 1} of #{deck.cards.length}."
+    puts "Question: #{current_card.question}"
+    print " Answer: "
+    guess = gets.chomp
+    take_turn(guess)
   end
 
   def number_correct_by_category(category)
-    correct_in_category = 0
+    correct = 0
     turns.each do |turn|
       if turn.card.category == category && turn.correct?
         correct_in_category += 1
       end
     end
-    correct_in_category
+    correct
   end
 
   def percent_correct
-    total = turns.length.to_f
-    percent = (number_correct.to_f / total) * 100
-    percent
+    (number_correct.to_f / turns.length.to_f) * 100
   end
 
   def percent_correct_by_category(category)
@@ -72,8 +69,7 @@ class Round
        end
      end
 
-     percent_correct = (correct_in_category.to_f / category_total.to_f) * 100
-     percent_correct
+     (correct_in_category.to_f / category_total.to_f) * 100
   end
 
   def finish
