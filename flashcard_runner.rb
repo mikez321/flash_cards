@@ -1,10 +1,15 @@
-require './card'
+require './lib/card'
+require './lib/deck'
+require './lib/round'
+require './lib/turn'
 
-print "Enter a new card question: "
-question = gets.chomp
+card1 = Card.new("What is larger?  A llama or an alpaca? ", "Llama", :Animals)
+card2 = Card.new("Who paints happy trees?", "Bob Ross", :Pop_Culture)
+card3 = Card.new("How many chains are in a furlong?", "10", :Science)
+card4 = Card.new("How many grams are in a Kilogram?", "1000", :Science)
 
-print "\nEnter question answer: "
-answer = gets.chomp
+cards = [card1, card2, card3, card4]
 
-print "\nEnter category of question: "
-category = gets.chomp.capitalize.to_sym
+deck = Deck.new(cards)
+round = Round.new(deck)
+round.start
