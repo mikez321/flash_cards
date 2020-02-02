@@ -1,9 +1,9 @@
 class Round
-  attr_reader :deck, :turns, :card_index, :number_correct
+  attr_reader :deck, :turns, :card_number, :number_correct
   def initialize(deck)
     @deck = deck
     @turns = []
-    @card_index = 0
+    @card_number = 0
     @number_correct = 0
   end
 
@@ -11,7 +11,7 @@ class Round
     system "clear"
     puts "Welcome! You're playing with #{deck.cards.length} cards."
     puts "-------------------------------------------------------------------"
-    puts "This is card number #{card_index + 1} of #{deck.cards.length}."
+    puts "This is card number #{card_number + 1} of #{deck.cards.length}."
     puts "Question: #{current_card.question}"
     print " Answer: "
     guess = gets.chomp
@@ -19,13 +19,13 @@ class Round
   end
 
   def current_card
-    deck.cards[card_index]
+    deck.cards[card_number]
   end
 
   def take_turn(guess)
     new_turn = Turn.new(guess, current_card)
     @turns << new_turn
-    @card_index += 1
+    @card_number += 1
     puts new_turn.feedback
     @number_correct += 1 if new_turn.correct?
 
@@ -34,7 +34,7 @@ class Round
   end
 
   def round
-    puts "This is card number #{card_index + 1} of #{deck.cards.length}."
+    puts "This is card number #{card_number + 1} of #{deck.cards.length}."
     puts "Question: #{current_card.question}"
     print " Answer: "
     guess = gets.chomp
