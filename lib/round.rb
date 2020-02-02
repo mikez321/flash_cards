@@ -51,24 +51,23 @@ class Round
     correct_in_category
   end
 
+  def total_in_category(category)
+    category_total = 0
+    turns.each do |turn|
+      if turn.card.category == category
+        category_total += 1
+      end
+    end
+    category_total
+  end
+
+
   def percent_correct
     (number_correct.to_f / turns.length.to_f) * 100
   end
 
   def percent_correct_by_category(category)
-     category_total = 0
-     correct_in_category = 0
-     turns.each do |turn|
-       if turn.card.category == category && turn.correct?
-         correct_in_category += 1
-       end
-
-       if turn.card.category == category
-         category_total += 1
-       end
-     end
-
-     (correct_in_category.to_f / category_total.to_f) * 100
+     (number_correct_by_category(category).to_f / total_in_category(category).to_f) * 100
   end
 
   def finish
