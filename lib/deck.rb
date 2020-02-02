@@ -6,7 +6,7 @@ class Deck
   end
 
   def count
-    @cards.length
+    cards.length
   end
 
   def add_card(card)
@@ -20,9 +20,8 @@ class Deck
   end
 
   def categories_in_deck
-    starting_categories = []
-    cards.each do |card|
-      starting_categories << card.category
+    starting_categories = cards.map do |card|
+      card.category
     end
     @categories_in_deck = starting_categories.uniq
   end
