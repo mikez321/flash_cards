@@ -11,7 +11,7 @@ card4 = Card.new("How many grams are in a Kilogram?", "1000", :Science)
 
 # cards = [card1, card2, card3, card4]
 filename = "cards.txt"
-cards = cards = CardGenerator.new(filename).cards
+cards = CardGenerator.new(filename).cards
 
 deck = Deck.new(cards)
 round = Round.new(deck)
