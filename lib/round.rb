@@ -29,7 +29,7 @@ class Round
     puts new_turn.feedback
     @number_correct += 1 if new_turn.correct?
 
-    return finish if (turns.length) == deck.cards.length
+    return finish if turns.length == deck.cards.length
     round
   end
 
@@ -63,11 +63,11 @@ class Round
 
 
   def percent_correct
-    (number_correct.to_f / turns.length.to_f) * 100
+    ((number_correct.to_f / turns.length.to_f) * 100).round(1)
   end
 
   def percent_correct_by_category(category)
-     (number_correct_by_category(category).to_f / total_in_category(category).to_f) * 100
+     ((number_correct_by_category(category).to_f / total_in_category(category).to_f) * 100).round(1)
   end
 
   def finish
